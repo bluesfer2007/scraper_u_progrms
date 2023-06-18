@@ -1,0 +1,12 @@
+
+site_scraper:
+  usfq:
+    url_usfq: https://www.usfq.edu.ec/es/escuelas/escuela-de-especialidades-medicas
+    base_url: https://www.usfq.edu.ec
+    query:
+      program_links: 'a'
+      titles_program: '#titulo ~ .field__item'
+      price_progra: '#costo_total ~ div p'
+      duracion_prog: '#duracion ~ div .field__item'
+      creditos_pro: '#duracion ~ div .field__item'
+      url_malla:
