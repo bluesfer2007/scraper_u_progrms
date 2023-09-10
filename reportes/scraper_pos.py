@@ -5,6 +5,8 @@ import bs4
 from bs4 import BeautifulSoup
 from reportes.common_config import config
 from urllib.parse import urljoin
+
+import re
 #from reportes import config_s as cf
 
 class Scraper:
@@ -40,6 +42,19 @@ class HomePage(Scraper):
             if link and link.has_attr('href'):
                 links_list.append(link)
         return set(urljoin(self._url_base,link['href']) for link in links_list)
+    
+    @property
+    def filt_posgrado(self):
+        urls=self.programs_links
+        url_posgrado=[x for x in urls if re.findall(self._queries['es_posgrado'], x)]
+        return url_posgrado[0]
+    
+
+    @property
+    def solo_posgrados(self):
+        urls=self.programs_links
+        urls_pos=[x for x in urls if self._queries['texto_pos'] in x]
+        return urls_pos
 
     
 #nueva clase para obtener el contenido de cada link_programa
@@ -51,12 +66,16 @@ class InfoProgram(Scraper):
     @property
     def titulo_espe(self):
         result=self._select(self._queries['titles_program'])
-        return result[0].get_text() if len(result) else ''
+        return result[0].get_text(strip=True) if len(result) else ''
     
     @property
     def get_price(self):
         result=self._select(self._queries['price_progra'])
-        return result[0].get_text()
+        if len(result)>0:
+            result=result[0].get_text()
+        else:
+            result=['<h1>no hay precio</h1>']
+        return result
     
     @property 
     def get_duracion(self):

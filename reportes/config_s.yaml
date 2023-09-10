@@ -1,12 +1,25 @@
 
 site_scraper:
   usfq:
-    url_usfq: https://www.usfq.edu.ec/es/escuelas/escuela-de-especialidades-medicas
     base_url: https://www.usfq.edu.ec
     query:
       program_links: 'a'
+      es_posgrado: '/posgrados$'
+      texto_pos: 'posgrado'
       titles_program: '#titulo ~ .field__item'
       price_progra: '#costo_total ~ div p'
       duracion_prog: '#duracion ~ div .field__item'
       creditos_pro: '#duracion ~ div .field__item'
-      url_malla:
+      url_malla: 'none'
+  unemi:
+    base_url: https://www.unemi.edu.ec/
+    query:
+      program_links: 'a'
+      es_posgrado: 'maestrias/$'
+      texto_pos: 'maestria'
+      titles_program: '[class~=heading--h2]'
+      price_progra: 'p[style] span[style] span[style*="36"] strong'
+      duracion_prog: '#duracion ~ div .field__item'
+      creditos_pro: '#duracion ~ div .field__item'
+      url_malla: 'none'
+
