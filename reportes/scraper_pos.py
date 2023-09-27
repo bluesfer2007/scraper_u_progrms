@@ -44,17 +44,36 @@ class HomePage(Scraper):
         return set(urljoin(self._url_base,link['href']) for link in links_list)
     
     @property
+    def programs_link_uasb(self):
+        links_list=[]
+        for link in self._select(self._queries['program_links']):
+            if link and link.has_attr('href'):
+                links_list.append(link)
+        return set(urljoin(self._url_base,link['href']) for link in links_list)
+
+
+
+    
+    @property
     def filt_posgrado(self):
         urls=self.programs_links
         url_posgrado=[x for x in urls if re.findall(self._queries['es_posgrado'], x)]
         return url_posgrado[0]
     
-
     @property
     def solo_posgrados(self):
-        urls=self.programs_links
+        urls=self.programs_link_uasb
         urls_pos=[x for x in urls if self._queries['texto_pos'] in x]
         return urls_pos
+    
+    #nombre posgrados y modalidad
+    @property
+    def figure_posgrado(self):
+        figure_text=self._select(self._queries['titles_program'])
+        #texto=[x.get_text(strip=True) for x in figure_text]
+        #texto=[x.select('a') for x in figure_text]
+        
+        return figure_text
 
     
 #nueva clase para obtener el contenido de cada link_programa

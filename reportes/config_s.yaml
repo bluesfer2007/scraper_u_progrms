@@ -22,4 +22,37 @@ site_scraper:
       duracion_prog: '#duracion ~ div .field__item'
       creditos_pro: '#duracion ~ div .field__item'
       url_malla: 'none'
+  ucsg:
+    base_url: https://www.ucsg.edu.ec/posgrado/
+    query:
+      program_links: 'a'
+      es_posgrado: 'maestria/$'
+      texto_pos: 'posgrado'
+      titles_program: 'figure'
+      price_progra: 'p[style] span[style] span[style*="36"] strong'
+      duracion_prog: '#duracion ~ div .field__item'
+      creditos_pro: '#duracion ~ div .field__item'
+      url_malla: 'none'
+  uasb:
+    base_url: https://www.uasb.edu.ec/
+    query:
+      program_links: 'a'
+      es_posgrado: 'programa/$'
+      texto_pos: 'programa'
+      titles_program: '.programa-destacado div h4'
+      price_progra: 'p[style] span[style] span[style*="36"] strong'
+      duracion_prog: '#duracion ~ div .field__item'
+      creditos_pro: '#duracion ~ div .field__item'
+      url_malla: 'none'
 
+  grego:
+    base_url: https://sangregorio.edu.ec/
+    query:
+      program_links: 'a'
+      es_posgrado: 'ab0/$'
+      texto_pos: 'm'
+      titles_program: '.programa-destacado div h4'
+      price_progra: 'p[style] span[style] span[style*="36"] strong'
+      duracion_prog: '#duracion ~ div .field__item'
+      creditos_pro: '#duracion ~ div .field__item'
+      url_malla: 'none'
