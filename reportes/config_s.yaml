@@ -49,10 +49,77 @@ site_scraper:
     base_url: https://sangregorio.edu.ec/
     query:
       program_links: 'a'
-      es_posgrado: 'ab0/$'
-      texto_pos: 'm'
+      es_posgrado: 'ab0$'
+      texto_pos: '/'
       titles_program: '.programa-destacado div h4'
       price_progra: 'p[style] span[style] span[style*="36"] strong'
       duracion_prog: '#duracion ~ div .field__item'
+      creditos_pro: '#duracion ~ div .field__item'
+      url_malla: 'none'
+  
+  pucecuen:
+    base_url: https://posgrado.ucacue.edu.ec/oferta-academica/
+    query:
+      program_links: 'a'
+      es_posgrado: 'https'
+      texto_pos: 'posgrado'
+      titles_program: '.programa-destacado div h4'
+      price_progra: 'p[style] span[style] span[style*="36"] strong'
+      duracion_prog: '#duracion ~ div .field__item'
+      creditos_pro: '#duracion ~ div .field__item'
+      url_malla: 'none'
+
+  itb:
+    base_url: https://itb.edu.ec/
+    query:
+      program_links: 'a'
+      es_posgrado: 'https'
+      texto_pos: '-'
+      titles_program: 'div.offset-1.col-10.texto h1'
+      price_matri: 'h6.texto ~ li'
+      prc_aran: 'h6.texto ~ li'
+      duracion_prog: '#duracion ~ div .field__item'
+      creditos_pro: '#duracion ~ div .field__item'
+      url_malla: 'none'
+
+  cordillera:
+    base_url: https://www.cordillera.edu.ec/
+    query:
+      program_links: 'a'
+      es_posgrado: 'https'
+      texto_pos: '-'
+      titles_program: '#breadcrumbs span span strong'
+      price_matri: 'tbody'
+      prc_aran: 'kl ld'
+      modalidad: '.elementor-widget-container ul li .elementor-icon-list-text'
+      duracion_prog: '.elementor-widget-container ul li .elementor-icon-list-text'
+      creditos_pro: '#duracion ~ div .field__item'
+      url_malla: 'none'
+
+  sudameri:
+    base_url: https://www.cordillera.edu.ec/
+    query:
+      program_links: 'a'
+      es_posgrado: 'https'
+      texto_pos: '-'
+      titles_program: 'div div.elementor-widget-container h1.elementor-heading-title, div div.elementor-widget-container h2.elementor-heading-title'
+      price_matri: '[id^=section-iconbox-3] div p ~ ul li'
+      prc_aran: '[id^=section-iconbox-3] div p ~ ul li'
+      modalidad: '[id^=section-iconbox-2] div ul'
+      duracion_prog: '[id^=section-iconbox-2] div ul'
+      creditos_pro: '#duracion ~ div .field__item'
+      url_malla: 'none'
+
+  usboli:
+    base_url: https://www.uasb.edu.ec/
+    query:
+      program_links: 'a'
+      es_posgrado: 'https'
+      texto_pos: '-'
+      titles_program: '.pro_general_1'
+      price_matri: 'li.pro_general_2'
+      prc_aran: 'li.pro_general_2'
+      modalidad: 'li.pro_general_4'
+      duracion_prog: '[id^=section-iconbox-2] div ul'
       creditos_pro: '#duracion ~ div .field__item'
       url_malla: 'none'

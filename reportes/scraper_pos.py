@@ -17,12 +17,16 @@ class Scraper:
         self._html=None
 
         self._visit(url)
-
+    #metodo select listado de elementos
     def _select(self, query_str):
         return self._html.select(query_str)
     
+    #detodo_elegir un solo elemento en select
+    def _selectone(self, query_str):
+        return self._html.select_one(query_str)
+    
     def _visit(self, url):
-        response=requests.get(url, headers={"User-Agent": "xy"})
+        response=requests.get(url, headers={"User-Agent": "xlsy"})
         response.raise_for_status()
         self._html=bs4.BeautifulSoup(response.text, 'lxml')
 
@@ -81,26 +85,54 @@ class InfoProgram(Scraper):
     def __init__(self, new_site_uid, url):
         super().__init__(new_site_uid, url)
 
-
+    #get title pogram use select en general with class
     @property
     def titulo_espe(self):
         result=self._select(self._queries['titles_program'])
-        return result[0].get_text(strip=True) if len(result) else ''
+        return result[0].get_text(strip=True) if len(result)>0 else ''
     
+    #get price if exist with select matric
     @property
-    def get_price(self):
-        result=self._select(self._queries['price_progra'])
+    def get_price_matric(self):
+        result=self._select(self._queries['price_matri'])
+        return result[0].get_text(strip=True) if len(result)>0 else ''
+    
+    #usar precio de arancel en este caso indice 2
+    @property
+    def get_precio_arancel(self):
+        result=self._select(self._queries['prc_aran'])
         if len(result)>0:
             result=result[0].get_text()
         else:
-            result=['<h1>no hay precio</h1>']
+            result=['no hay precio :(']
         return result
-    
+    #usar precio de inscripcion en este caso indice 2
+    @property
+    def get_precio_inscrip(self):
+        result=self._select(self._queries['prc_aran'])
+        if len(result)>0:
+            result=result[0].get_text()
+        else:
+            result=['no hay precio :(']
+        return result
+
+#obtener modalidad
+    @property
+    def get_modalidad(self):
+        result=self._select(self._queries['modalidad'])
+        return result[0].get_text(strip=True) if len(result)>0 else ''
+
+
+
     @property 
     def get_duracion(self):
         result=self._select(self._queries['duracion_prog'])
-        year=result[0].get_text()
-        return year
+        if len(result)>0:
+            result=result[0].get_text()
+        else:
+            result=['no hay precio :(']
+        
+        return result
     
     @property 
     def creditos_pro(self):
